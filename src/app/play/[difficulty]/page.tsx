@@ -1,4 +1,6 @@
 import QuestionDisplayer from "@/components/QuestionDisplayer";
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 interface Questions {
   question: string,
@@ -16,12 +18,16 @@ async function questions(difficulty: string): Promise<Questions[]> {
 
 const page = async ({ params }: {params: {difficulty: string}}) => {
   const res = await questions(params.difficulty);
+  const clerkUser = await currentUser();
+  if (clerkUser === null) {
+    redirect("/sign-in")
+  }
   console.log(res);
 
   return (
     <>
       <div className="some flex flex-col h-full">
-          <QuestionDisplayer questions={res} difficulty={params.difficulty}/>
+          <QuestionDisplayer questions={res} difficulty={params.difficulty} user_id={clerkUser.id}/>
       </div>
     </>
   )

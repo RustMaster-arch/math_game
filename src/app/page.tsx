@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import LeaderBoard from '@/components/LeaderBoard';
 import { SignedIn, UserButton } from '@clerk/nextjs';
 import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
@@ -9,7 +10,7 @@ const Home = async () => {
   if (!clerkUser) redirect("/sign-in")
 
   return (
-    <div className='flex flex-col text-center'>
+    <>
       <Header className='sticky left-0 top-0'>
         <div className='flex items-center gap-2 lg:gap-4'>
           <SignedIn>
@@ -18,9 +19,11 @@ const Home = async () => {
         </div>
       </Header>
 
-      <h1 className='h1'>Leader Board</h1>
-
-    </div>
+      <div className='flex flex-col text-center justify-center items-center'>
+        <h1 className='pt'>Leader Board</h1>
+        <LeaderBoard/>
+      </div>
+    </>
   )
 }
 
