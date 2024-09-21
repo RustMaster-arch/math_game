@@ -21,9 +21,11 @@ const Home = async () => {
       </Header>
 
       <div className='grid grid-cols-2 gap-4 text-center'>
-        <h1 className='pt'>Leader Board</h1>
+        <h1 className='pt'>
+          Leader Board
+          <LeaderBoard/>
+        </h1>
         <Buttons/>
-        <LeaderBoard/>
       </div>
     </>
   )
