@@ -8,9 +8,6 @@ const Header = ({children, className}: { children: React.ReactNode; className: s
       <Link href={"/"} className={"md:flex-1"}>
         <Image src={"/icons/Logo.jpeg"} alt='Logo with name' width={32} height={32} 
           className='hidden md:block rounded-full'/>
-
-        <Image src={"/icons/Logo.jpeg"} alt='Logo' width={32} height={32} 
-          className='hidden md:block rounded-full'/>
       </Link>
       {children}
     </div>
