@@ -6,10 +6,10 @@ const Header = ({children, className}: { children: React.ReactNode; className: s
   return (
     <div className={`header ${className}`}>
       <Link href={"/"} className={"md:flex-1"}>
-        <Image src={"../public/icons/Logo.svg"} alt='Logo with name' width={120} height={32} 
+        <Image src={"/icons/Logo.svg"} alt='Logo with name' width={120} height={32} 
           className='hidden md:block'/>
 
-        <Image src={"../public/icons/Logo.svg"} alt='Logo' width={32} height={32} 
+        <Image src={"/icons/Logo.svg"} alt='Logo' width={32} height={32} 
           className='mr-2 md:hidden'/>
       </Link>
       {children}
