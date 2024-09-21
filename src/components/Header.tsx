@@ -10,7 +10,7 @@ const Header = ({children, className}: { children: React.ReactNode; className: s
           className='hidden md:block w-32 h-32 rounded-full'/>
 
         <Image src={"/icons/Logo.jpeg"} alt='Logo' width={32} height={32} 
-          className='hidden md:block w-32 h-32 rounded-full'/>
+          className='hidden md:block rounded-full'/>
       </Link>
       {children}
     </div>
