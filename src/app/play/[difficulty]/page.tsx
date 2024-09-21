@@ -8,8 +8,8 @@ interface Questions {
 }
 
 async function questions(difficulty: string): Promise<Questions[]> {
-  const response = await fetch(`http://localhost:8080/${difficulty}`, {
-    cache: 'no-store',
+  const response = await fetch(`http://backend-production-c8e4.up.railway.app/${difficulty}`, {
+    cache: "no-store",
     method: "GET",
   });
 

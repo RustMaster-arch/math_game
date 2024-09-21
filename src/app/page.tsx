@@ -1,3 +1,4 @@
+import Buttons from '@/components/Buttons';
 import Header from '@/components/Header';
 import LeaderBoard from '@/components/LeaderBoard';
 import { SignedIn, UserButton } from '@clerk/nextjs';
@@ -19,8 +20,9 @@ const Home = async () => {
         </div>
       </Header>
 
-      <div className='flex flex-col text-center justify-center items-center'>
+      <div className='grid grid-cols-2 gap-4 text-center'>
         <h1 className='pt'>Leader Board</h1>
+        <Buttons/>
         <LeaderBoard/>
       </div>
     </>

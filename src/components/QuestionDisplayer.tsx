@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -23,7 +22,10 @@ const accents = [
 
 async function correct(difficulty: string, answerIndex: number, questionIndex: number, user_id: string): Promise<boolean> {
   console.log("calling back-end");
-  const response = await fetch(`http://localhost:8080/correct?question_index=${questionIndex}&difficulty=${difficulty}&answer_index=${answerIndex}&user_id=${user_id}`);
+  const response = await fetch(`https://backend-production-c8e4.up.railway.app/correct?question_index=${questionIndex}&difficulty=${difficulty}&answer_index=${answerIndex}&user_id=${user_id}`, {
+    cache: "no-store",
+    method: "GET",
+  });
   return response.json();
 }
 
@@ -60,17 +62,17 @@ const QuestionDisplayer = (props: Props) => {
     setSelectedAnswerIndex(answerIndex); 
     if (res === true) {
       setIsCorrect(true);
-      setTimeout(() => indexHandler(), 1000);
+      setTimeout(() => indexHandler(), 2000);
       return;
     }
     setIsCorrect(false);
-    setTimeout(() => indexHandler(), 1000);
+    setTimeout(() => indexHandler(), 2000);
   }
 
   const accentColor = accents[index % accents.length];
 
   return (
-    <div className="flex justify-center items-center flex-col w-full h-full">
+    <div className="flex justify-center items-center flex-col w-full h-full text-center">
       <div className="p-4 text-center w-full min-h-36 flex justify-center items-center">
         <h3 className={`pt text-2xl border rounded p-2 bc w-full`}>
           {props.questions[index].question}
@@ -79,19 +81,23 @@ const QuestionDisplayer = (props: Props) => {
 
       <div className="grid grid-cols-2 gap-3 grow w-full">
         {props.questions[index].answers.map((answer, answerIndex) => (
-          <div key={answerIndex} className="w-full">
-            <button
-              className={`text-white text-2xl rounded ${accentColor} ${
-selectedAnswerIndex === answerIndex ? isCorrect ? "bg-gradient-to-r from-green-500 to-green-700 transition animate-pulse" :
-"bg-gradient-to-r from-red-500 to-red-700 transition animate-pulse" : ""} w-full h-full`}
-              onClick={async () => await correctHandler(props.difficulty, index, answerIndex)}
-            >
-              {answer}
-            </button>
-            {selectedAnswerIndex === answerIndex ? isCorrect ? <h1 className="pt">yeah you got it</h1> : <h1 className="pt">you gotta practice more</h1> : <></>}
-          </div>
+          <>
+            <div key={answerIndex} className="w-full transition-all">
+              <button
+                className={`text-white text-3xl rounded ${accentColor} ${
+selectedAnswerIndex === answerIndex ? isCorrect ? "bg-gradient-to-r from-green-500 to-green-600 transition-all" :
+"bg-gradient-to-r from-red-500 to-red-600 transition-all" : ""} w-full h-full hover:brightness-110`}
+                onClick={async () => await correctHandler(props.difficulty, index, answerIndex)}
+              >
+                {answer}
+              </button>
+            </div>
+          </>
         ))}
       </div>
+      {isCorrect === true ? 
+        <h1 className="pt bg-green-700 m-3 rounded w-full ">V yeah you got it</h1> :
+        isCorrect === false ? <h1 className="pt m-3 bg-red-700 rounded w-full">X You gotta practice more</h1> : <></>}
     </div>
   );
 }

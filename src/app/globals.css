@@ -7,27 +7,50 @@
         @apply flex flex-row bg-[#2D2D2D]; 
     }
 
+    .color {
+        @apply bg-[#2D2D2D];
+    }
+
     .body {
-        @apply bg-[#1E1E1E]
+        @apply bg-[#1E1E1E];
     }
 
     .sign {
-        @apply flex justify-center items-center p-3
+        @apply flex justify-center items-center p-3;
     }
+
     .pt {
-        @apply text-white text-xl mx-3 p-3
+        @apply text-white text-xl p-3;
     }
 
     .st {
-        @apply text-[#B0B0B0] text-lg mx-3 p-3
+        @apply text-[#B0B0B0] text-lg mx-3 p-3;
     }
 
     .bc {
-        @apply border-[#2D2D2D] mx-3 p-3
+        @apply border-[#2D2D2D] mx-3 p-3;
     }
 
     .some {
-        @apply bg-[#1F1E1F] p-3 min-h-full w-full 
+        @apply bg-[#1F1E1F] p-3 min-h-full w-full;
+    }
+}
+
+@layer utilities {
+    .easy {
+        @apply my-3 bg-blue-500;
+    }
+
+    .medium {
+        @apply my-3 bg-yellow-500;
+    }
+
+    .hard {
+        @apply my-3 bg-red-500;
+    }
+
+    .very_hard {
+        @apply my-3 bg-purple-600
     }
 }
 
