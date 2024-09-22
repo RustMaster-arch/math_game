@@ -18,7 +18,7 @@ const page = async () => {
   const points = await pointsFn(clerkUser.id);
 
   return (
-    <div>
+    <div className='flex items-center'>
       <StatsDisplayer points={points}/>
     </div>
   )
