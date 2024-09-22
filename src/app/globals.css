@@ -15,6 +15,10 @@
         @apply bg-[#1E1E1E];
     }
 
+    .colorS {
+        @apply bg-zinc-800;
+    }
+
     .sign {
         @apply flex justify-center items-center p-3;
     }

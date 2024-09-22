@@ -15,14 +15,17 @@ const LeaderBoard = async () => {
   const leaderBoard = await getLeaderBoard();
 
   return (
-    <div className="color flex flex-col">
-      {leaderBoard.map(leader => (
-        <div className="color flex flex-row justify-around items-center" key={leader.user_name}>
-          <p className="pt">{leader.user_name}</p>
-          <p className="st">{leader.points}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="ml-3 flex flex-col">
+        <p className="pt my-3 colorS">Leader Board</p>
+        {leaderBoard.map(leader => (
+          <div className="color border border-gray-950 flex flex-row justify-around items-center" key={leader.user_name}>
+            <p className="pt">{leader.user_name}</p>
+            <p className="st">{leader.points}</p>
+          </div>
+        ))}
+      </div>
+    </>
   )
 }
 
