@@ -20,6 +20,8 @@ const Home = async () => {
         </div>
       </Header>
 
+      <h1 className='pt text-4xl'>Welcome to MathGame!</h1>
+
       <div className='grid grid-cols-2 gap-4 text-center'>
         <h1 className='pt'>
           Leader Board
