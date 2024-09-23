@@ -72,33 +72,39 @@ const QuestionDisplayer = (props: Props) => {
   const accentColor = accents[index % accents.length];
 
   return (
-    <div className="flex justify-center items-center flex-col w-full h-full text-center">
-      <div className="p-4 text-center w-full min-h-36 flex justify-center items-center">
-        <h3 className={`pt text-2xl border rounded p-2 bc w-full`}>
-          {props.questions[index].question}
-        </h3>
-      </div>
+    <>
+      <div className="flex justify-center items-center flex-col w-full h-full text-center">
+        <div className="p-4 text-center w-full min-h-36 flex justify-center items-center">
+          <h3 className={`pt text-2xl border rounded p-2 bc w-full`}>
+            {props.questions[index].question}
+          </h3>
+        </div>
 
-      <div className="grid grid-cols-2 gap-3 grow w-full">
-        {props.questions[index].answers.map((answer, answerIndex) => (
-          <>
-            <div key={answerIndex} className="w-full transition-all">
-              <button
-                className={`text-white text-3xl rounded ${accentColor} ${
-selectedAnswerIndex === answerIndex ? isCorrect ? "bg-gradient-to-r from-green-500 to-green-600 transition-all" :
-"bg-gradient-to-r from-red-500 to-red-600 transition-all" : ""} w-full h-full hover:brightness-110`}
-                onClick={async () => await correctHandler(props.difficulty, index, answerIndex)}
-              >
-                {answer}
-              </button>
-            </div>
-          </>
-        ))}
+        <div className="grid grid-cols-2 gap-3 grow w-full">
+          {props.questions[index].answers.map((answer, answerIndex) => (
+            <>
+              <div key={answerIndex} className="w-full transition-all">
+                <button
+                  className={`text-white text-3xl rounded ${accentColor} ${
+selectedAnswerIndex === answerIndex ? isCorrect ? "bg-gradient-to-r from-green-500 to-green-600" :
+"bg-gradient-to-r from-red-500 to-red-600" : ""} w-full h-full transition-all duration-300 hover:brightness-110`}
+                  onClick={async () => await correctHandler(props.difficulty, index, answerIndex)}
+                >
+                  {answer}
+                </button>
+              </div>
+            </>
+          ))}
+        </div>
       </div>
-      {isCorrect === true ? 
-        <h1 className="pt bg-green-700 m-3 rounded w-full ">V yeah you got it</h1> :
-        isCorrect === false ? <h1 className="pt m-3 bg-red-700 rounded w-full">X You gotta practice more</h1> : <></>}
-    </div>
+      <div className={`flex text-start ${isCorrect === true ? "bg-green-700" : isCorrect === false ? "bg-red-700" : <></>} rounded my-3`}>
+        <h1 className="pt">Answer: </h1>
+
+        {isCorrect === true ? 
+          <h1 className="pt">V yeah you got it</h1> :
+          isCorrect === false ? <h1 className="pt">X You gotta practice more</h1> : <></>}
+      </div>
+    </>
   );
 }
 
