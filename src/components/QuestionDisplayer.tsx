@@ -33,7 +33,7 @@ const QuestionDisplayer = (props: Props) => {
   const [index, setIndex] = useState(0);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(null);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [solved, setSolved] = useState<boolean | null>(false)
+  const [solved, setSolved] = useState<boolean | null>(null)
   const router = useRouter();
 
   const indexHandler = () => {
