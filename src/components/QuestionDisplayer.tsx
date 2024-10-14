@@ -34,6 +34,7 @@ const QuestionDisplayer = (props: Props) => {
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(null);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [solved, setSolved] = useState(false)
   const router = useRouter();
 
   const indexHandler = () => {
@@ -71,6 +72,16 @@ const QuestionDisplayer = (props: Props) => {
 
   const accentColor = accents[index % accents.length];
 
+  const handleOnSubmit = async (answerIndex: number) => {
+    if (solved) return;
+    try {
+      setSolved(true)
+      await correctHandler(props.difficulty, index, answerIndex)
+    } catch (error) {
+      setSolved(false)
+    }
+  }
+
   return (
     <>
       <div className="flex justify-center items-center flex-col w-full h-full text-center">
@@ -88,7 +99,7 @@ const QuestionDisplayer = (props: Props) => {
                   className={`text-white text-3xl rounded ${accentColor} ${
 selectedAnswerIndex === answerIndex ? isCorrect ? "bg-gradient-to-r from-green-500 to-green-600" :
 "bg-gradient-to-r from-red-500 to-red-600" : ""} w-full h-full transition-all duration-300 hover:brightness-110`}
-                  onClick={async () => await correctHandler(props.difficulty, index, answerIndex)}
+                  onClick={() => handleOnSubmit(answerIndex)}
                 >
                   {answer}
                 </button>
