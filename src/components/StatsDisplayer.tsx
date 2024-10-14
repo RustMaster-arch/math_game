@@ -12,9 +12,9 @@ const StatsDisplayer = (props: Props) => {
     router.push("/");
   }
   return (
-    <div className="bg-green-500 rounded p-3 m-3 text-center">
-      <h1 className="pt">Now you have {props.points} points</h1>
-      <Button className="m-3 bg-gray-400" onClick={redi}>Go to menu</Button>
+    <div className="bg-blue-950 rounded p-3 m-3 text-center">
+      <h1 className="pt text-5xl">Now you have {props.points} points</h1>
+      <Button className="m-3 bg-gray-800 text-3xl" onClick={redi}>Go to menu</Button>
     </div>
   )
 }
