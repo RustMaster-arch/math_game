@@ -73,6 +73,8 @@ const QuestionDisplayer = (props: Props) => {
 
   const handleOnSubmit = async (answerIndex: number) => {
     if (solved) return;
+    if (solved === false) return;
+
     try {
       setSolved(true)
       await correctHandler(props.difficulty, index, answerIndex)
