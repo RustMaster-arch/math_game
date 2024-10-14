@@ -33,40 +33,39 @@ const QuestionDisplayer = (props: Props) => {
   const [index, setIndex] = useState(0);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(null);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [solved, setSolved] = useState(false)
+  const [solved, setSolved] = useState<boolean | null>(false)
   const router = useRouter();
 
   const indexHandler = () => {
     if (index === props.questions.length - 1) {
       console.log("executed");
       setSelectedAnswerIndex(null);
-      setIsCorrect(null);
+      setSolved(null);
       router.push("/result");
       return;
     }
     setSelectedAnswerIndex(null);
-    setIsCorrect(null);
+    setSolved(null);
     setIndex(index + 1);
   }
 
   useEffect(() => {
-    if (isCorrect) {
+    if (solved) {
       console.log("correct answers now will be: " + (correctAnswers + 1));
       setCorrectAnswers(correctAnswers + 1);
       return
     }
-  }, [isCorrect])
+  }, [solved])
   
   const correctHandler = async (difficulty: string, questionIndex: number, answerIndex: number) => {
     const res = await correct(difficulty, answerIndex, questionIndex, props.user_id);
     setSelectedAnswerIndex(answerIndex); 
     if (res === true) {
-      setIsCorrect(true);
+      setSolved(true);
       setTimeout(() => indexHandler(), 2000);
       return;
     }
-    setIsCorrect(false);
+    setSolved(false);
     setTimeout(() => indexHandler(), 2000);
   }
 
@@ -97,7 +96,7 @@ const QuestionDisplayer = (props: Props) => {
               <div key={answerIndex} className="w-full transition-all">
                 <button
                   className={`text-white text-3xl rounded ${accentColor} ${
-selectedAnswerIndex === answerIndex ? isCorrect ? "bg-gradient-to-r from-green-500 to-green-600" :
+selectedAnswerIndex === answerIndex ? solved ? "bg-gradient-to-r from-green-500 to-green-600" :
 "bg-gradient-to-r from-red-500 to-red-600" : ""} w-full h-full transition-all duration-300 hover:brightness-110`}
                   onClick={() => handleOnSubmit(answerIndex)}
                 >
@@ -108,12 +107,12 @@ selectedAnswerIndex === answerIndex ? isCorrect ? "bg-gradient-to-r from-green-5
           ))}
         </div>
       </div>
-      <div className={`flex text-start ${isCorrect === true ? "bg-green-700" : isCorrect === false ? "bg-red-700" : <></>} rounded my-3`}>
+      <div className={`flex text-start ${solved === true ? "bg-green-700" : solved === false ? "bg-red-700" : <></>} rounded my-3`}>
         <h1 className="pt">Answer: </h1>
 
-        {isCorrect === true ? 
+        {solved === true ? 
           <h1 className="pt">V yeah you got it</h1> :
-          isCorrect === false ? <h1 className="pt">X You gotta practice more</h1> : <></>}
+          solved === false ? <h1 className="pt">X You gotta practice more</h1> : <></>}
       </div>
     </>
   );
