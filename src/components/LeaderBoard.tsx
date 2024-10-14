@@ -16,7 +16,7 @@ const LeaderBoard = async () => {
 
   return (
     <>
-      <div className="ml-3 flex flex-col">
+      <div className="mx-3 flex flex-col xs:col-span-full mxl:[grid-column:1/4] mxl:[grid-row:1/3] hxl:[grid-column:1/3]">
         <p className="pt my-3 colorS">Leader Board</p>
         {leaderBoard.map(leader => (
           <div className="color border border-gray-950 flex flex-row justify-around items-center" key={leader.user_name}>
