@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from '@clerk/themes'
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,6 +27,35 @@ export default function RootLayout({
           className={`antialiased body h-screen`}
         >
           {children}
+          <footer className="w-full bg-gradient-to-r from-gray-950 to-gray-800 h-auto px-5 py-8 rounded
+            flex flex-col text-left max-xs:px-3">
+
+            <p className="mb-5 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-tr
+              from-blue-400 to-purple-800 max-hxl:text-xl max-xs:text-sm m-0 p-0 text-left">
+
+              made by: @juanEstebanForeroMontejo
+            </p>
+
+
+            <p className="mb-5 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-tr
+              from-orange-500 to-blue-800 ml-3 max-hxl:text-xl max-xs:text-sm m-0 p-0 text-left">
+
+              gitHub name: @RustMaster-arch
+            </p>
+
+            <Link className="mb-5 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-tr
+              from-red-400 to-green-600 max-hxl:text-xl max-xs:text-sm m-0 p-0 text-left" 
+              href={`https://github.com/RustMaster-arch/math_game`}>
+
+              GitHub repo: https://github.com/RustMaster-arch/math_game
+            </Link>
+
+            <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-tr
+              from-white to-gray-800 ml-3 max-hxl:text-xl max-xs:text-sm m-0 p-0 text-left">
+
+              find the source code in the repo
+            </p>
+          </footer>
         </body>
       </html>
     </ClerkProvider>
